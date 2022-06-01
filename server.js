@@ -108,4 +108,21 @@ app.get('/', (req, res) => {
     res.render('orientation');
   });
 
+  app.get('/page1', (req, res) => {
+    res.render('page1');
+  });
+
+  app.post('/contact', (req, res) => {
+    const {name,mail,subject,message} = req.body
+    console.log(req.body)
+    res.render('contact');
+  });
+
+  app.get('/article/database-admistrator-vacancy', (req, res) => {
+    res.render('advertisement');
+  });
+
+
+
+
 app.listen(port, ()=>{console.log('Starting the server at port ' +port)})
