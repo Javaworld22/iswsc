@@ -1,5 +1,5 @@
-const api_key = "73bd459b0acddfff24332b7df62fbb87-27a562f9-b93d8134"
-const domain = "https://iswscorp.org.ng"
+const api_key = ""
+const domain = ""
 
 var express = require('express');
 const bodyParser = require ('body-parser')
