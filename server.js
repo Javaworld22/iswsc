@@ -1,7 +1,12 @@
+const api_key = "73bd459b0acddfff24332b7df62fbb87-27a562f9-b93d8134"
+const domain = "https://iswscorp.org.ng"
+
 var express = require('express');
 const bodyParser = require ('body-parser')
 var app = express()
 var path = require('path')
+const nodemailer = require('nodemailer')
+const mailgun1 = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 const port = process.env.PORT || 3030
 
@@ -112,10 +117,27 @@ app.get('/', (req, res) => {
     res.render('page1');
   });
 
+  app.get('/privacy-policy', (req, res) => {
+    res.render('policy');
+  });
+
   app.post('/contact', (req, res) => {
     const {name,mail,subject,message} = req.body
-    console.log(req.body)
-    res.render('contact');
+    //console.log(req.body)
+    let msg = runmessage(message)
+      let data1 = data(subject, msg , name)
+      mailgun1.messages().send(data1,  (error, body) => {
+        if(body){
+          console.log(body);
+          console.log("Message sent")
+          res.render('contact');
+        }else{
+          console.log(error)
+          console.log("Error occured here")
+        }
+
+      });
+
   });
 
   app.get('/article/database-admistrator-vacancy', (req, res) => {
@@ -126,3 +148,23 @@ app.get('/', (req, res) => {
 
 
 app.listen(port, ()=>{console.log('Starting the server at port ' +port)})
+
+const runmessage = (msg) => {
+  messages = msg
+  console.log(messages)
+  return messages
+}
+
+const data = (subj,msg,name)=>({
+  from : 'Gobinda Thakur <iheruomemichael@gmail.com>',
+  to : 'iheruomemichael@gmail.com',
+  subject :  subj,
+  text : msg+" Complaint by "+name
+})
+
+// mailgun1.messages().send(data, function (error, body) {
+//   if(body)
+//     console.log(body);
+//   else
+//     console.log(error)
+// });
