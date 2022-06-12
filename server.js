@@ -1,5 +1,3 @@
-const api_key = ""
-const domain = ""
 
 var express = require('express');
 const bodyParser = require ('body-parser')
@@ -68,7 +66,7 @@ app.get('/', (req, res) => {
     res.render('tariffs');
   });
   app.get('/contact', (req, res) =>{
-    res.render('contact');
+    res.render('contact',{status1:true,status2:false});
   });
   app.get('/news', (req, res)=> {
     res.render('news');
@@ -123,17 +121,18 @@ app.get('/', (req, res) => {
 
   app.post('/contact', (req, res) => {
     const {name,mail,subject,message} = req.body
-    //console.log(req.body)
+    console.log(req.body)
     let msg = runmessage(message)
-      let data1 = data(subject, msg , name)
+      let data1 = data(subject,msg,name,mail)
       mailgun1.messages().send(data1,  (error, body) => {
         if(body){
-          console.log(body);
+         // console.log(body);
           console.log("Message sent")
-          res.render('contact');
+          res.render('contact',{status1:true,status2:true});
         }else{
-          console.log(error)
+         // console.log(error)
           console.log("Error occured here")
+          res.render('contact',{status1:false,status2:true});
         }
 
       });
@@ -155,9 +154,9 @@ const runmessage = (msg) => {
   return messages
 }
 
-const data = (subj,msg,name)=>({
-  from : 'Gobinda Thakur <iheruomemichael@gmail.com>',
-  to : 'iheruomemichael@gmail.com',
+const data = (subj,msg,name,mail)=>({
+  from : mail,
+  to : 'iswsccustomercare@gmail.com',
   subject :  subj,
   text : msg+" Complaint by "+name
 })

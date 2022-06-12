@@ -23,6 +23,8 @@
 <link rel="shortcut icon" href="/assets/l3.png" type="image/png" />
 
     <title>Contact Us | Imo State Water Supply and Sewerage Corporation</title>
+    <script src="/js/sweetalert.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"> -->
     <link rel="stylesheet" media="all" href="/css/css_9m8-tA3IQf8ThlLQYTTZUyEweCvyR908Tg0XCbKYOfY.css" />
 <link rel="stylesheet" media="all" href="/css/css_XT9ueGORcRIPmvRmdHO3Gbbub7J9ecE5zsYEyIz9d_c.css" />
 
@@ -51,6 +53,27 @@
 
   <h2 class="visually-hidden" id="block-iswsc-main-menu-menu">Main navigation</h2>
 
+  <%if(status2){%>
+  <%if(status1){%>
+    <script>
+swal({
+  title: "Good job!",
+  text: "Message Sent Successfully!",
+  icon: "success",
+  button: "Ok",
+});
+        </script>
+        <%}else{%>
+          <script>
+            swal({
+              title: "Oops!",
+              text: "Message not sent!",
+              icon: "error",
+              button: "Ok",
+            });
+                    </script>
+          <%}%>
+          <%}%>
 
 
 
@@ -574,11 +597,12 @@
 
   </div>
 
-
 <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"contact","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"ajaxPageState":{"libraries":"classy\/base,classy\/messages,core\/drupal.form,core\/normalize,iswsc\/global-style,system\/base","theme":"iswsc","theme_token":null},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true},"user":{"uid":0,"permissionsHash":"6c28702811ab470d74c689356dbe4766e7ffe0f012800efc1b0e11f8cb37dd45"}}</script>
 <script src="/js/js_uzHTnMJuHRsq8FXZwN7ZXOrE7g7ly-K-_bsAL_ebMAc.js"></script>
 <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
 <script src="/js/js_vN0rt7_H52V4zsG1dzHj0noXPzZaJ-z7wQ03uOsNm-Q.js"></script>
+<!-- <script src="/js/sweetalert.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> -->
 
 </body>
 </html>
